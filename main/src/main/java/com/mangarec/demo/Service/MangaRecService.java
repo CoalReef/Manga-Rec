@@ -5,10 +5,9 @@ import org.springframework.web.client.RestClient;
 
 import com.mangarec.demo.DTOs.FinalMangaDataDTO;
 import com.mangarec.demo.DTOs.MangaId;
-import com.mangarec.demo.DTOs.MangaIdDataDTO;
 
 @Service
-public class ManagRecService {
+public class MangaRecService {
     private final RestClient restClient = RestClient.create();
     private final String URL = "https://api.jikan.moe/v4/"; // Base uri for calls
 
@@ -27,8 +26,8 @@ public class ManagRecService {
 
     // Get the manga ID
     public MangaId getMangaId(String mangaName) {
-        MagaId mangaIdDto = restClient.get()
-        .uri("https://api.jikan.moe/v4/manga?q=" + mangaName)
+        MangaId mangaIdDto = restClient.get()
+        .uri(URL + "manga?q=" + mangaName + "&limit=1")
         .retrieve()
         .body(MangaId.class);
 

@@ -1,5 +1,5 @@
 package com.mangarec.demo.DTOs;
 
 public record MangaId(
-    String mal_id;
+    String mal_id
 ) {}

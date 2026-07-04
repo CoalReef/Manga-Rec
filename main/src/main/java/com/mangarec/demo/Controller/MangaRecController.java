@@ -7,17 +7,17 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mangarec.demo.DTOs.FinalMangaDataDTO;
-import com.mangarec.demo.Service.ManagRecService;
+import com.mangarec.demo.Service.MangaRecService;
 
 @RestController
 public class MangaRecController {
 
     // Autowired service objects to allow service calls from controller
     @Autowired
-    ManagRecService service;
+    MangaRecService service;
 
     // Get Manga info based on given input
-    @GetMapping("mangarec/getManga/{mangaName}")
+    @GetMapping("https://localhost:8080/mangarec/getManga/{mangaName}")
     public ResponseEntity<FinalMangaDataDTO> getManga(@PathVariable String mangaName) {
         return ResponseEntity.ok(service.getMangaInfo(mangaName)); //.ok() retruns a 200 status code letting JS know its okay
     }
