@@ -1,9 +1,10 @@
 package com.mangarec.demo.Service;
 
+import com.mangarec.demo.DTOs.MangaData;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
 
-import com.mangarec.demo.DTOs.FinalMangaDataDTO;
+import com.mangarec.demo.DTOs.MangaDataReceiver;
 import com.mangarec.demo.DTOs.MangaId;
 
 @Service
@@ -12,16 +13,18 @@ public class MangaRecService {
     private final String URL = "https://api.jikan.moe/v4/"; // Base uri for calls
 
     // Get the manga info with the ID
-    public FinalMangaDataDTO getMangaInfo(String mangaName) {
-        MangaId mangaId = getMangaId(mangaName);
-        String mangaIdString = mangaId.mal_id();
+    public MangaData getMangaInfo(String mangaName) {
+        // MangaId mangaId = getMangaId(mangaName);
+        // String mangaIdString = mangaId.mal_id();
 
-        FinalMangaDataDTO finalMangaDataDTO = restClient.get()
-        .uri(URL + "manga/" + mangaIdString + "/full")
+        MangaDataReceiver dataReceiver = restClient.get()
+        .uri(URL + "manga/" + mangaName + "/full")
         .retrieve()
-        .body(FinalMangaDataDTO.class);
+        .body(MangaDataReceiver.class);
 
-        return finalMangaDataDTO;
+        MangaData mangaData = dataReceiver.data();
+        System.out.println(mangaData);
+        return mangaData;
     }
 
     // Get the manga ID

@@ -1,6 +1,6 @@
 package com.mangarec.demo.DTOs;
 
-public record FinalMangaDataDTO(
+public record MangaData(
         String synopsis,
         String title_english,
         String chapters,
@@ -8,4 +8,3 @@ public record FinalMangaDataDTO(
         String status,
         String url
 ) {}
-
