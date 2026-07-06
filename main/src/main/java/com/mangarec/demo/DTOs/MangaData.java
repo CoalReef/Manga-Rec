@@ -1,10 +1,7 @@
 package com.mangarec.demo.DTOs;
 
 public record MangaData(
+        String title,
         String synopsis,
-        String title_english,
-        String chapters,
-        String volumes,
-        String status,
-        String url
+        String rank
 ) {}

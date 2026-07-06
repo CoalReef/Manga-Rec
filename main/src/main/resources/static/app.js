@@ -13,7 +13,7 @@ async function getMangaInfo(mangaName) {
 searchButton.addEventListener("click", async function startMangaSearch()  {
     const mangaInfo = await getMangaInfo(inputBox.value);
 
-    outputTest.innerHTML = mangaInfo.url;
+    outputTest.innerHTML = mangaInfo.title;
     console.log(mangaInfo);
 });
 
