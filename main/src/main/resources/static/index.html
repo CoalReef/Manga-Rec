@@ -4,11 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manga Rec</title>
+    <link rel="stylesheet" href="styles/styles.css">
 </head>
 <body>
-    <input type="text" id="text-box">
-    <button id="search-button">Search for manga</button>
-    <div id="data-return"></div>
-    <script src="app.js"></script>
+    <div id="card-background">
+        <div id="add-manga-card">
+            <input id="add-search-bar" type="text" placeholder="Manga Name...">
+            <button id="search-button">Search</button>
+            <div id="search-results"></div>
+            <button id="confim-add-button">Confirm</button>
+        </div>
+    </div>
+    <button id="add-manga-button">Add</button>
+    <script src="JS/app.js"></script>
 </body>
 </html>
