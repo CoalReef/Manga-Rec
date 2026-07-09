@@ -30,6 +30,12 @@ ul, ol {
 }
 
 /* Add Manga Pop Up Window */
+
+/* Hide all card contents until button click (handled in JS) */
+#card-background, #add-manga-card, #add-search-bar, #confim-add-button, #search-button {
+    display: none;
+}
+
 #card-background {
     position: fixed;
     top: 0;
@@ -37,7 +43,6 @@ ul, ol {
     height: 100vh;
     width: 100vw;
     background: rgb(0 0 0 / 0.84);
-    display: flex;
     align-items: center;
     align-content: center;
     justify-content: center;
@@ -48,7 +53,28 @@ ul, ol {
     background: white;
     height: 50%;
     width: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-gap: 0.25em;
+}
+
+#confim-add-button {
+    grid-row: 3;
+    grid-column: 3;
+}
+
+#add-search-bar {
+    grid-column: span 2;
+    grid-row: 1;
+}
+
+#search-button {
+    grid-column: 3;
+    grid-row: 1;
+    margin: 1em;
+}
+
+#confim-add-button, #add-search-bar, #search-button {
+    justify-self: center;
+    align-self: center;
 }
