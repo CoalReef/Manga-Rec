@@ -66,12 +66,21 @@ ul, ol {
 #add-search-bar {
     grid-column: span 2;
     grid-row: 1;
+    outline: none;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    background: rgb(0 0 0 / 0.4);
+    border-radius: 15px;
 }
 
 #search-button {
     grid-column: 3;
     grid-row: 1;
     margin: 1em;
+    padding: 1em;
+    background: blue;
+    color: white;
 }
 
 #confim-add-button, #add-search-bar, #search-button {
