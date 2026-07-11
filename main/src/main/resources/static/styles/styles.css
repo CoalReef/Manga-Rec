@@ -30,6 +30,11 @@ ul, ol {
 }
 
 /* Add Manga Pop Up Window */
+#add-manga-button {
+    position: fixed;
+    left: 95vw;
+    top: 95vh;
+}
 
 /* Hide all card contents until button click (handled in JS) */
 #card-background, #add-manga-card, #add-search-bar, #confim-add-button, #search-button {
@@ -47,6 +52,7 @@ ul, ol {
     align-content: center;
     justify-content: center;
     align-self: center;
+    z-index: 999;
 }
 
 #add-manga-card {
@@ -87,3 +93,20 @@ ul, ol {
     justify-self: center;
     align-self: center;
 }
+
+/* Users Manga Cards */
+#user-mangas-container {
+    display: grid;
+    grid-template-columns: repeat(5, 5fr);
+    grid-template-rows: repeat(5, 5fr);
+    width: 100vw;
+    height: 100vh;
+}
+
+.user-manga-card {
+    display: flex;
+    grid-column: 1;
+    grid-row: 1;
+    background: #ff0000;
+}
+

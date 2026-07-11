@@ -16,7 +16,7 @@ const outputTest = document.getElementById("search-results");
 const addCardWrapper = document.getElementById("add-manga-card");
 const addCardBackground = document.getElementById("card-background");
 
-// Fetch API Data based on user input on click of confim search button
+// Fetch API Data based on user input on click of confirm search button
 searchButton.addEventListener("click", async function startMangaSearch()  {
     const mangaInfo = await getMangaInfo(inputBox.value);
     outputTest.innerHTML = mangaInfo.title;
@@ -33,6 +33,7 @@ addMangaButton.addEventListener("click", function openAddWindow() {
     addCardWrapper.style.setProperty("display", "grid");
 });
 
+// Close the add manga window
 closeCardButton.addEventListener("click", function closeCardButton() {
     inputBox.style.setProperty("display", "none");
     searchButton.style.setProperty("display", "none");
