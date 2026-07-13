@@ -18,8 +18,8 @@ public class MangaRecController {
     MangaRecService service;
 
     // Get Manga info based on given input
-    @GetMapping("/mangarec/getManga/{mangaName}")
-    public ResponseEntity<MangaData> getManga(@PathVariable String mangaName) {
-        return ResponseEntity.ok(service.getMangaInfo(mangaName)); //.ok() retruns a 200 status code letting JS know its okay
+    @GetMapping("/mangarec/getManga/{mangaName}/{type}") // Type means if its a search by ID or by Title
+    public ResponseEntity<MangaData> getManga(@PathVariable String mangaName, @PathVariable String type) {
+        return ResponseEntity.ok(service.getMangaInfo(mangaName, type)); //.ok() returns a 200 status code letting JS know it's okay
     }
 }

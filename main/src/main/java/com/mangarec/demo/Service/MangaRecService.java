@@ -15,17 +15,29 @@ public class MangaRecService {
     private final String APIID = "963764123e5ee0b25370226e10a624b0";
 
     // Get the manga info with the ID
-    public MangaData getMangaInfo(String mangaName) {
-        MangaIdResult mangaId = getMangaId(mangaName);
-        String mangaIdString = mangaId.data().get(0).node().id();
+    public MangaData getMangaInfo(String mangaQuery, String type) {
 
-        MangaData mangaData = restClient.get()
-                .uri(URL + "manga/" + mangaIdString + "?fields=title,synopsis,rank")
-                .header(KEYNAME, APIID)
-                .retrieve()
-                .body(MangaData.class);
+        // Search by title
+        if (type.equals("title")) {
+            MangaIdResult mangaId = getMangaId(mangaQuery);
+            String mangaIdString = mangaId.data().get(0).node().id();
 
-        return mangaData;
+            MangaData mangaData = restClient.get()
+                    .uri(URL + "manga/" + mangaIdString + "?fields=title,synopsis,rank,id")
+                    .header(KEYNAME, APIID)
+                    .retrieve()
+                    .body(MangaData.class);
+
+            return mangaData;
+        } else {
+            MangaData mangaData = restClient.get()
+                    .uri(URL + "manga/" + mangaQuery + "?fields=title,synopsis,rank,id")
+                    .header(KEYNAME, APIID)
+                    .retrieve()
+                    .body(MangaData.class);
+
+            return mangaData;
+        }
     }
 
     // Get the manga ID
