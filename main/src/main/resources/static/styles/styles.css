@@ -101,12 +101,14 @@ ul, ol {
     grid-template-rows: repeat(5, 5fr);
     width: 100vw;
     height: 100vh;
+    grid-gap: 2em;
 }
 
-.user-manga-card {
-    display: flex;
-    grid-column: 1;
-    grid-row: 1;
-    background: #ff0000;
+.card-backgrounds {
+    background: black;
+    max-height: 20vh;
+    max-width: 40vw;
+    color: white;
+    overflow: scroll;
 }
 

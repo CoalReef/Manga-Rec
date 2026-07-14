@@ -25,6 +25,7 @@ searchButton.addEventListener("click", async function startMangaSearch()  {
 
     // Search results as buttons allow user to select which manga they'd like to add
     const buttonId = mangaInfo.id;
+    searchResults.innerHTML = "" // Clear results before adding new results
     searchResults.insertAdjacentHTML(
         "beforeend",
         `<button class="search-result-buttons" id="${buttonId}">${mangaInfo.title}</button>`
@@ -33,7 +34,6 @@ searchButton.addEventListener("click", async function startMangaSearch()  {
 
 searchResults.addEventListener("click", async function(event) {
     if (event.target.classList.contains("search-result-buttons")) {
-        // FIX: Added 'await' so JavaScript waits for the backend response
         const mangaForCard = await getMangaInfoById(event.target.id);
 
         // Creating the cards
@@ -48,7 +48,6 @@ searchResults.addEventListener("click", async function(event) {
         cardWrapper.append(cardTitle);
         cardWrapper.append(cardSynopsis);
 
-        // FIX: Changed to .textContent for industry standard security and performance
         cardTitle.textContent = mangaForCard.title;
         cardSynopsis.textContent = mangaForCard.synopsis;
 
