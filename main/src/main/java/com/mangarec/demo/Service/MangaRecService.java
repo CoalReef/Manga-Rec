@@ -1,53 +1,46 @@
 package com.mangarec.demo.Service;
 
-import com.mangarec.demo.DTOs.MangaData;
+import com.mangarec.demo.DTOs.FlatMangaDataObject;
+import com.mangarec.demo.DTOs.MangaDataObject;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
 
-import com.mangarec.demo.DTOs.MangaDataReceiver;
-import com.mangarec.demo.DTOs.MangaIdResult;
+import com.mangarec.demo.DTOs.MangaIdObject;
 
 @Service
 public class MangaRecService {
     private final RestClient restClient = RestClient.create();
     private final String URL = "https://api.myanimelist.net/v2/"; // Base url for calls
-    private final String KEYNAME = "X-MAL-CLIENT-ID"; // Dont feel like typing this over and over
+    private final String KEYNAME = "X-MAL-CLIENT-ID"; // Don't feel like typing this over and over
     private final String APIID = "963764123e5ee0b25370226e10a624b0";
+    private final String SEARCH_LIMIT = "5"; // Easier to change the search result limit
 
-    // Get the manga info with the ID
-    public MangaData getMangaInfo(String mangaQuery, String type) {
-
-        // Search by title
-        if (type.equals("title")) {
-            MangaIdResult mangaId = getMangaId(mangaQuery);
-            String mangaIdString = mangaId.data().get(0).node().id();
-
-            MangaData mangaData = restClient.get()
-                    .uri(URL + "manga/" + mangaIdString + "?fields=title,synopsis,rank,id")
-                    .header(KEYNAME, APIID)
-                    .retrieve()
-                    .body(MangaData.class);
-
-            return mangaData;
-        } else {
-            MangaData mangaData = restClient.get()
-                    .uri(URL + "manga/" + mangaQuery + "?fields=title,synopsis,rank,id")
-                    .header(KEYNAME, APIID)
-                    .retrieve()
-                    .body(MangaData.class);
-
-            return mangaData;
-        }
-    }
 
     // Get the manga ID
-    public MangaIdResult getMangaId(String mangaName) {
-        MangaIdResult mangaIdDto = restClient.get()
+    public MangaIdObject getMangaId(String mangaName) {
+        return restClient.get()
                 .uri(URL + "manga?q=" + mangaName + "&limit=1")
                 .header(KEYNAME, APIID)
                 .retrieve()
-                .body(MangaIdResult.class);
+                .body(MangaIdObject.class);
+    }
 
-        return mangaIdDto;
+    // Need a different class for flat 1 layer responses, like when searching by ID
+    public FlatMangaDataObject getMangaById(String id) {
+        // Finds specific manga when given the ID from the call
+        return restClient.get()
+                .uri(URL + "manga/" + id + "?fields=title,synopsis,rank,id")
+                .header(KEYNAME, APIID)
+                .retrieve()
+                .body(FlatMangaDataObject.class);
+    }
+
+    // Searching by name returns multiple results, different JSON structure needs different DTO
+    public MangaDataObject getMangaByName(String name) {
+        return restClient.get()
+                .uri(URL + "manga?q=" + name + "&limit=" + SEARCH_LIMIT + "?fields=title,synposis,rank,id")
+                .header(KEYNAME, APIID)
+                .retrieve()
+                .body(MangaDataObject.class);
     }
 }

@@ -37,7 +37,7 @@ ul, ol {
 }
 
 /* Hide all card contents until button click (handled in JS) */
-#card-background, #add-manga-card, #add-search-bar, #confim-add-button, #search-button {
+#card-background, #add-manga-card, #add-search-bar, #confirm-add-button, #search-button {
     display: none;
 }
 
@@ -64,7 +64,7 @@ ul, ol {
     grid-gap: 0.25em;
 }
 
-#confim-add-button {
+#confirm-add-button {
     grid-row: 3;
     grid-column: 3;
 }
@@ -89,7 +89,7 @@ ul, ol {
     color: white;
 }
 
-#confim-add-button, #add-search-bar, #search-button {
+#confirm-add-button, #add-search-bar, #search-button {
     justify-self: center;
     align-self: center;
 }
@@ -111,4 +111,5 @@ ul, ol {
     color: white;
     overflow: scroll;
 }
+
 

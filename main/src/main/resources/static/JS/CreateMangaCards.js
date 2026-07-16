@@ -1,4 +1,4 @@
-import { getMangaInfo } from "./api.js";
+import { getMangaByName } from "./api.js";
 import { getMangaInfoById } from "./api.js";
 
 // Configure variable names of DOM elements
@@ -21,19 +21,24 @@ const addCardBackground = document.getElementById("card-background");
 
 // Fetch API Data based on user input on click of confirm search button
 searchButton.addEventListener("click", async function startMangaSearch()  {
-    const mangaInfo = await getMangaInfo(inputBox.value);
-
-    // Search results as buttons allow user to select which manga they'd like to add
-    const buttonId = mangaInfo.id;
     searchResults.innerHTML = "" // Clear results before adding new results
-    searchResults.insertAdjacentHTML(
-        "beforeend",
-        `<button class="search-result-buttons" id="${buttonId}">${mangaInfo.title}</button>`
-    );
+    const resultList = await getMangaByName(inputBox.value);
+    for (let i = 0; i < resultList.data.length; i++) {
+        const mangaInfo = resultList.data[i].node;
+
+        // Search results as buttons allow user to select which manga they'd like to add
+        const buttonId = mangaInfo.id;
+        searchResults.insertAdjacentHTML(
+            "beforeend",
+            `<button class="search-result-buttons" id="${buttonId}">${mangaInfo.title}</button>`
+        );
+    }
 });
 
 searchResults.addEventListener("click", async function(event) {
     if (event.target.classList.contains("search-result-buttons")) {
+
+
         const mangaForCard = await getMangaInfoById(event.target.id);
 
         // Creating the cards

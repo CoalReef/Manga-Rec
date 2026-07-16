@@ -3,7 +3,7 @@ package com.mangarec.demo.DTOs;
 
 import java.util.List;
 
-public record MangaIdResult(List<DataWrapper> data) {
+public record MangaIdObject(List<DataWrapper> data) {
 
     public record DataWrapper(MangaId node) {
     }

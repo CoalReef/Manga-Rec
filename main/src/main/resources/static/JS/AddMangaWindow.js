@@ -1,5 +1,3 @@
-import { getMangaInfo } from "./api.js";
-
 // Pre config of variables for document elements
 // Input fields
 const inputBox = document.getElementById("add-search-bar");
