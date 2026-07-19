@@ -12,7 +12,9 @@ public record MangaDataObject(List<DataWrapper> data) {
             String title,
             String synopsis,
             String rank,
-            String id
+            String id,
+            String mean,
+            String num_chapters
     ) {
     }
 }

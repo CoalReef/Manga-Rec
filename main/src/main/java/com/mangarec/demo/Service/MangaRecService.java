@@ -29,7 +29,7 @@ public class MangaRecService {
     public FlatMangaDataObject getMangaById(String id) {
         // Finds specific manga when given the ID from the call
         return restClient.get()
-                .uri(URL + "manga/" + id + "?fields=title,synopsis,rank,id")
+                .uri(URL + "manga/" + id + "?fields=title,synopsis,rank,id,mean,num_chapters")
                 .header(KEYNAME, APIID)
                 .retrieve()
                 .body(FlatMangaDataObject.class);

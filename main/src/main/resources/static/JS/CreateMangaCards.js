@@ -1,5 +1,6 @@
 import { getMangaByName } from "./api.js";
 import { getMangaInfoById } from "./api.js";
+import { openUserDetailsWindow } from "./UserDetailsWindow.js"
 
 // Configure variable names of DOM elements
 
@@ -35,27 +36,32 @@ searchButton.addEventListener("click", async function startMangaSearch()  {
     }
 });
 
+// Detect a click and open the user details window
 searchResults.addEventListener("click", async function(event) {
     if (event.target.classList.contains("search-result-buttons")) {
-
-
-        const mangaForCard = await getMangaInfoById(event.target.id);
-
-        // Creating the cards
-        const cardWrapper = document.createElement("div");
-        const cardTitle = document.createElement("h1");
-        const cardSynopsis = document.createElement("p");
-
-        cardWrapper.classList.add("card-backgrounds");
-        cardTitle.classList.add("card-titles");
-        cardSynopsis.classList.add("card-synopses");
-
-        cardWrapper.append(cardTitle);
-        cardWrapper.append(cardSynopsis);
-
-        cardTitle.textContent = mangaForCard.title;
-        cardSynopsis.textContent = mangaForCard.synopsis;
-
-        userMangasWrapper.append(cardWrapper);
+        // Open the window to prompt user for their detail input
+        await openUserDetailsWindow(event.target.id);
     }
 });
+
+
+// Create the card with the info received from the user details window
+export function createCard(mangaForCard) {
+
+    // Creating the cards
+    const cardWrapper = document.createElement("div");
+    const cardTitle = document.createElement("h1");
+    const cardSynopsis = document.createElement("p");
+
+    cardWrapper.classList.add("card-backgrounds");
+    cardTitle.classList.add("card-titles");
+    cardSynopsis.classList.add("card-synopses");
+
+    cardWrapper.append(cardTitle);
+    cardWrapper.append(cardSynopsis);
+
+    cardTitle.textContent = mangaForCard.title;
+    cardSynopsis.textContent = mangaForCard.synopsis;
+
+    userMangasWrapper.append(cardWrapper);
+}
