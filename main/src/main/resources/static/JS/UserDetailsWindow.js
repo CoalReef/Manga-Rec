@@ -31,7 +31,7 @@ export async function openUserDetailsWindow(mangaId) {
     confirmButton.addEventListener("click", function() {
         closeUserDetailsWindow();
         createCard(mangaInfo);
-    });
+    }, {once : true});
 }
 
 // Run close function on close button click
