@@ -31,9 +31,14 @@ ul, ol {
 
 /* Add Manga Pop Up Window */
 #add-manga-button {
-    position: fixed;
-    left: 95vw;
-    top: 95vh;
+    background: blue;
+    height: 40vh;
+    width: 20vw;
+    color: white;
+    border-radius: 15px;
+    box-shadow: 2px 2px 100px 0px rgb(0 0 0 / 0.45);
+    align-items: center;
+    justify-content: center;
 }
 
 /* Hide all card contents until button click (handled in JS) */
@@ -125,8 +130,6 @@ ul, ol {
     align-self: center;
 }
 
-
-
 /* Users Manga Cards */
 #user-mangas-container {
     display: grid;
@@ -138,11 +141,14 @@ ul, ol {
 }
 
 .card-backgrounds {
-    background: black;
-    max-height: 20vh;
-    max-width: 40vw;
-    color: white;
-    overflow: hidden;
+    background: gray;
+    height: 40vh;
+    width: 20vw;
+    color: black;
+    overflow: scroll;
+    border-radius: 15px;
+    box-shadow: 2px 2px 100px 0px rgb(0 0 0 / 0.45);
 }
+
 
 

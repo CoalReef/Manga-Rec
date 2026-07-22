@@ -46,22 +46,29 @@ searchResults.addEventListener("click", async function(event) {
 
 
 // Create the card with the info received from the user details window
-export function createCard(mangaForCard) {
-
+export function createCard(mangaForCard, userDetails) {
     // Creating the cards
     const cardWrapper = document.createElement("div");
     const cardTitle = document.createElement("h1");
     const cardSynopsis = document.createElement("p");
+    const userRating = document.createElement("p");
+    const currentChapter = document.createElement("p");
 
     cardWrapper.classList.add("card-backgrounds");
     cardTitle.classList.add("card-titles");
     cardSynopsis.classList.add("card-synopses");
+    userRating.classList.add("user-rating");
+    currentChapter.classList.add("current-chapter");
 
     cardWrapper.append(cardTitle);
     cardWrapper.append(cardSynopsis);
+    cardWrapper.append(userRating);
+    cardWrapper.append(currentChapter);
 
     cardTitle.textContent = mangaForCard.title;
     cardSynopsis.textContent = mangaForCard.synopsis;
+    userRating.textContent = userDetails.userRating;
+    currentChapter.textContent = userDetails.chapterProgress;
 
     userMangasWrapper.append(cardWrapper);
 }
